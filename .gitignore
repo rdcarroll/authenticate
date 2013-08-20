@@ -1,0 +1,10 @@
+*.class
+*.pyc
+*.pyo
+*.class
+*.pyc
+*.pyo
+node_modules
+err.log
+nohup.out
+out.log

@@ -1,0 +1,14 @@
+{
+  "name": "authenticate",
+  "version": "0.0.1",
+  "dependencies": {
+    "coffee-script": "*",
+    "restify": "*",
+    "request": "2.x.x",
+    "oauth": "0.9.x",
+    "mongoose": "*"
+  },
+  "scripts": {
+    "start": "npm start"
+  }
+}

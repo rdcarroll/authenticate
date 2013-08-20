@@ -1,0 +1,21 @@
+mongodb://localhost/authenticate
+authenticate listening at http://0.0.0.0:3000
+Hit SIGUSR1 - starting debugger agent.
+debugger listening on port 5858
+
+domain.js:66
+    throw er;
+          ^
+TypeError: Object #<Object> has no method 'redirectURL'
+    at Chatter.check (/Users/rdcarroll/code/authenticate/networks/chatter.coffee:88:29)
+    at Promise.Util.read (/Users/rdcarroll/code/authenticate/lib/util.coffee:105:20)
+    at Promise.onResolve (/Users/rdcarroll/code/authenticate/node_modules/mongoose/node_modules/mpromise/lib/promise.js:162:8)
+    at Promise.EventEmitter.emit (events.js:88:17)
+    at Promise.emit (/Users/rdcarroll/code/authenticate/node_modules/mongoose/node_modules/mpromise/lib/promise.js:79:38)
+    at Promise.fulfill (/Users/rdcarroll/code/authenticate/node_modules/mongoose/node_modules/mpromise/lib/promise.js:92:20)
+    at Promise.resolve (/Users/rdcarroll/code/authenticate/node_modules/mongoose/lib/promise.js:108:15)
+    at Promise.onResolve (/Users/rdcarroll/code/authenticate/node_modules/mongoose/node_modules/mpromise/lib/promise.js:162:8)
+    at Promise.EventEmitter.emit (events.js:88:17)
+    at Promise.emit (/Users/rdcarroll/code/authenticate/node_modules/mongoose/node_modules/mpromise/lib/promise.js:79:38)
+mongodb://localhost/authenticate
+authenticate listening at http://0.0.0.0:3000
