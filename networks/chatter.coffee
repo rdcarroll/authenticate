@@ -19,20 +19,21 @@ Chatter =
         return eh res, err if err?
         return next new Error "Error creating new user/app/network transaction" unless doc?
         #must go thru oauth if no access token or refresh token exists  
-        Chatter.redirectURL  req.network, req.application, req.userjoin, (err, result) -> 
+        Chatter.redirectURL  req.network, req.application, req.userjoin, (err, response) -> 
           return eh res, err if err?
           res.send 200,
             "oatuh_complete" : false
             "redirect" : true
-            "redirect_uri" : result  
+            "redirect_uri" : response  
     
     else unless req.userjoin.AccessToken?
       #try to use the refresh token if there is one
       if req.userjoin.RefreshToken?
-        Chatter.refresh req.network, req.application, req.userjoin, (err, result) ->
+        Chatter.refresh req.network, req.application, req.userjoin, (err, response) ->
           return eh res, err if err?
           res.send 200,
-            "oatuh_complete" : true    
+            "oatuh_complete" : true
+            "response" : response  
       #must go thru oauth if no access token or refresh token exists            
       else
         Chatter.redirectURL  req.network, req.application, req.userjoin, (err, response) -> 

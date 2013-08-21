@@ -1,6 +1,9 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
+
+Network = require './Network'
+Application = require './Application'
   
 Action = new Schema
   Network : 

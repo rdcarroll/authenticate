@@ -21,7 +21,7 @@ module.exports = (req, res, next) ->
     # console.log ndoc
     
     #locate the host metadata
-    util.read "Application", {Name:host}, ApplicationSchema, (err, adoc, count) ->
+    util.read "Application", { Name:host, Network:ndoc.get('Network') }, ApplicationSchema, (err, adoc, count) ->
       return eh res, err if err?
       return next new Error "App Not found" unless adoc?
       # console.log adoc
