@@ -25,10 +25,4 @@ module.exports =
       db_prefix: 'mongodb'
       db_port: '27017'
       db_database: 'authenticate'
-    # production :
-      # host:'nodejitsu:347fe515b3fad7ea90d66e57bb3406f4@alex.mongohq.com'
-      # port: '10020'
-      # db_prefix: 'mongodb'
-      # db_port: '27017'
-      # db_database: 'nodejitsudb408663363097'
       
