@@ -12,29 +12,36 @@ module.exports = (req, res, next) ->
   return next new Error "Header missing (x-app-name)" unless host?
   
   #locate the appropriate network metadata
-  nw = req.getPath().split '/'
-  if nw[0]? then nw = nw[0].toLowerCase().charAt(0).toUpperCase() else return next new Error "Network Not Found in URL"
-  
-  util.read "Network", {Name:nw}, NetworkSchema, (err, ndoc, count) ->
-    return eh res, err if err?
-    return next new Error "Network Not found" unless ndoc?
-    # console.log ndoc
-    
-    #locate the host metadata
-    util.read "Application", { Name:host, Network:ndoc.get('Network') }, ApplicationSchema, (err, adoc, count) ->
-      return eh res, err if err?
-      return next new Error "App Not found" unless adoc?
-      # console.log adoc
+  reg = /^\/([^\/]+)\/.*$/i
+  m = reg.exec req.getPath()
+  if m
+    nw = m[1].toLowerCase()
+    opts =
+      query : {Name:{ $regex : new RegExp(nw,"i") }}
+    util.read "Network", opts, NetworkSchema, (err, ndoc, count) ->
+      return eh res, err if err? and err.statusCode isnt 404
+      return eh res, new Error "Network Not found" unless ndoc?
+      # console.log ndoc
       
-      #locate the user information for the host and network
-      opt = {Username:req.user.bun, Network : ndoc.get('_id'), Application : adoc.get('_id')}
-      util.read "User", opt, UserSchema, (err, udoc, count) ->
+      #locate the host metadata
+      opts =
+        query : { Name:host, Network:ndoc.get('_id') }
+      util.read "Application", opts, ApplicationSchema, (err, adoc, count) ->
         return eh res, err if err? and err.statusCode isnt 404
-        # console.log udoc
+        return next new Error "App Not found" unless adoc?
+        # console.log adoc
         
-        req.network = ndoc
-        req.application = adoc
-        req.userjoin = udoc
-        
-        
-        next()
+        #locate the user information for the host and network
+        opts = 
+          query : {Username:req.user.bun, Network : ndoc.get('_id'), Application : adoc.get('_id')}
+        util.read "User", opts, UserSchema, (err, udoc, count) ->
+          return eh res, err if err? and err.statusCode isnt 404
+          # console.log udoc
+          
+          req.network = ndoc
+          req.application = adoc
+          req.userjoin = udoc          
+          
+          next()  
+    
+  else return next new Error "Network Not Found in URL"

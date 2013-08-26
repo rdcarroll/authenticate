@@ -62,6 +62,7 @@ module.exports =
       select : _select
       populate : _populate
       wrap : util.Options(req.query)
+    console.log req.body.name
     util.update DOCNAME, opts, req.body, Schema, (err, doc, count) =>
       return eh res, err if err?
       return next new Error "Not found" unless doc?

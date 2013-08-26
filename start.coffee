@@ -8,6 +8,7 @@ Network = require './models/Network'
 Application = require './models/Application'
 
 Chatter = require './networks/chatter'
+Box = require './networks/box'
 
 server = restify.createServer name:'authenticate'
 
@@ -42,6 +43,11 @@ server.get '/chatter/check', Chatter.check
 server.get '/chatter/auth', Chatter.auth
 server.get '/chatter/refresh', Chatter.refresh
 server.get '/chatter/api/.*', Chatter.api
+
+server.get '/box/check', Box.check
+server.get '/box/auth', Box.auth
+server.get '/box/refresh', Box.refresh
+server.get '/box/api/.*', Box.api
 
 
 server.listen 3000, ->

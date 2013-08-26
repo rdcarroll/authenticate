@@ -138,4 +138,4 @@ Box =
 
 
 
-module.exports = Chatter
+module.exports = Box
