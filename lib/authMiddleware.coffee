@@ -6,7 +6,7 @@ module.exports = (req, res, next) ->
   return next new Error "Invalid token" unless token?
 
   opt =
-    url: "https://api-staging.mypsn.com/svc1/v2/identity/"
+    url: "https://api-staging.becpsn.com/identity/"
     qs:
       format: "json"
     headers:

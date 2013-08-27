@@ -13,7 +13,7 @@ Box =
       body =
         Username : req.user.bun
         Network : req.network.get('_id')
-        Application : req.application('_id')
+        Application : req.application.get('_id')
         
       util.create "User", {}, body, UserSchema, (err, doc) ->
         return eh res, err if err?
