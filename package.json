@@ -9,6 +9,6 @@
     "mongoose": "*"
   },
   "scripts": {
-    "start": "npm start"
+    "start": "coffee start.coffee"
   }
 }
