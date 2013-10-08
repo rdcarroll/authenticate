@@ -50,5 +50,5 @@ server.get '/box/refresh', Box.refresh
 server.get '/box/api/.*', Box.api
 
 
-server.listen 3000, ->
+server.listen config.port, ->
   console.log '%s listening at %s', server.name, server.url

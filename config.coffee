@@ -3,7 +3,7 @@ process.env.NODE_ENV ?= 'development'
 
 
 module.exports =
-  port: process.env.PORT or 8080
+  port: 3001
   sso: true
   keys:
     staging: "VpAxFUIkWuUoqj8sWG86JmosFfKVmUbG"
@@ -12,19 +12,16 @@ module.exports =
   mongo:
     development :
       host:'localhost'
-      port: '3000'
       db_prefix: 'mongodb'
       db_port: '27017'
       db_database: 'authenticate'
     staging :
       host:'localhost'
-      port: '3000'
       db_prefix: 'mongodb'
       db_port: '27017'
       db_database: 'authenticate'
     production :
       host:'localhost'
-      port: '3001'
       db_prefix: 'mongodb'
       db_port: '27017'
       db_database: 'authenticate'
